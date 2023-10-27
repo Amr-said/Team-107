@@ -7,7 +7,10 @@
 
 
 ## Project Description
-Briefly describe the purpose and scope of your project. Mention any specific goals, objectives, or features you aimed to achieve.
+- There is a pressing need for an automated solution that can accurately and efficiently detect and classify different types of Retinal OCT diseases.
+
+## Goal
+- Our goal is to develop a deep learning model to automatically detect and classify different types of Retinal OCT diseases
 
 ## Repository Structure
 Explain the structure of your repository and where to find important files. For example:
@@ -17,3 +20,5 @@ Explain the structure of your repository and where to find important files. For 
 - `my_model.h5`: This file contains the trained model. Note that we didn't train the model due to resource constraints.
 - `finalcode.ipynb`: This Jupyter Notebook contains our work, experiments, and project documentation.
 
+## Getting Started
+- with working model deployment you can run the command streamlit run working_application (2).py
