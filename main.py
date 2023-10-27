@@ -12,7 +12,6 @@ class_descriptions = {
     3: "NORMAL: A healthy retina without any significant issues."
 }
 
-
 # Function to preprocess the uploaded image
 def preprocess_image(image):
     image = Image.open(image)
@@ -30,7 +29,6 @@ def predict(image):
     print("Raw Prediction Scores:", prediction)
     return prediction
 
-
 # Streamlit UI
 st.title('Retina Image Classification')
 st.write('This app classifies retina images into four categories: CNV, DME, DRUSEN, NORMAL.')
@@ -42,24 +40,23 @@ uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"]
 
 if uploaded_image is not None:
     st.image(uploaded_image, caption='Uploaded Image', use_column_width=True)
-    
+
     if not model.model:
         st.write("Warning: Model weights not found. You should train the model first.")
     else:
         prediction = model.predict(uploaded_image)  # Call the predict method
-        st.write("Class Prediction:")
-        st.write(class_names[np.argmax(prediction)])
-            
-        # Display class description
-        predicted_class = np.argmax(prediction)
-        st.write("Class Description:")
-        st.write(class_descriptions[predicted_class])
-        st.write("Raw Predictions:")    
-        st.write(prediction)
-        
-        st.write("Prediction:")
-        for i in range(4):
-            st.write(f"{class_names[i]}: {prediction[0][i]:.2%}")
 
-
-# You can replace the example images with your own or provide download links.
+        # Create a two-column layout
+        col1, col2 = st.beta_columns([1, 2])
+        with col1:
+            st.image(uploaded_image, use_column_width=True)
+        with col2:
+            st.write("Class Prediction:")
+            st.write(class_names[np.argmax(prediction)])
+            st.write("Class Description:")
+            st.write(class_descriptions[np.argmax(prediction)])
+            st.write("Raw Predictions:")
+            st.write(prediction)
+            st.write("Prediction:")
+            for i in range(4):
+                st.write(f"{class_names[i]}: {prediction[0][i]:.2%}")
